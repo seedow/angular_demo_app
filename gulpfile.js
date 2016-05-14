@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
-	ngmin = require('gulp-ngmin'),
+	annotate = require('gulp-ng-annotate'),
 	clean = require('gulp-clean'),
 	sequence = require('gulp-sequence'),
 	less = require('gulp-less'),
@@ -38,7 +38,7 @@ gulp.task('compile_less', function() {
 gulp.task('compile_js', function() {
 	return gulp.src(['src/**/*.js'])
 		.pipe(concat('app.js'))
-		.pipe(ngmin())
+		.pipe(annotate())
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/js'))
 		.pipe(connect.reload());

@@ -10,10 +10,15 @@
 		<script src="dist/js/app.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-	{{2+5}}
-		<div ng-controller="a">
-			{{a}}
+		<div ng-controller="mainController" class='app'>
+			<div ng-repeat="movie in movies">
+  
+			<div class="thumbnail col-sm-6 col-md-4">
+				<img class="movie-poster"ng-src="{{movie.poster_path}}"/>
+				<span class='movie-title centered'>{{movie.title}}</span>
+			</div>
 		</div>
-		
-	</body>
+	</div>
+	
+</body>
 </html>

@@ -32,6 +32,7 @@ gulp.task('compile_less', function() {
 	return gulp.src('src/style/less/**/*.less')
 		.pipe(less())
 		.pipe(gulp.dest('./dist/css'))
+		.pipe(connect.reload());
 });
 
 gulp.task('compile_js', function() {
@@ -40,6 +41,7 @@ gulp.task('compile_js', function() {
 		.pipe(ngmin())
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/js'))
+		.pipe(connect.reload());
 });
 
 

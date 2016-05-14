@@ -9,7 +9,8 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect');
 
 var STATIC_CSS = ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
-	STATIC_JS = ['node_modules/angular/angular.min.js']
+	STATIC_JS = ['node_modules/angular/angular.min.js'],
+	STATIC_HTML = ['src/templates/**/*.html']
 
 gulp.task('clean', function() {
 	return gulp.src('dist', {
@@ -27,6 +28,12 @@ gulp.task('move_static_js', function() {
 	return gulp.src(STATIC_JS)
 		.pipe(gulp.dest('dist/js'))
 })
+
+gulp.task('move_static_html', function() {
+	return gulp.src(STATIC_HTML)
+		.pipe(gulp.dest('dist/templates'))
+})
+
 
 gulp.task('compile_less', function() {
 	return gulp.src('src/style/less/**/*.less')
@@ -54,14 +61,14 @@ gulp.task('connect', function() {
 
 
 gulp.task('watch_html', function () {
-  gulp.src('index.html')
+  gulp.src(['index.html','src/**/*.html'])
     .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
 	gulp.watch('src/style/less/*.less', ['compile_less']);
 	gulp.watch('src/**/*.js', ['compile_js']);
-	gulp.watch('index.html', ['watch_html']);
+	gulp.watch(['index.html','src/**/*.html'], ['watch_html','move_static_html']);
 });
 
 
@@ -70,4 +77,4 @@ gulp.task('dev', sequence(['build', 'connect'], ['watch']))
 
 
 
-gulp.task('build', sequence('clean', ['move_static_css', 'move_static_js', 'compile_less', 'compile_js']))
+gulp.task('build', sequence('clean', ['move_static_css', 'move_static_js','move_static_html','compile_less', 'compile_js']))

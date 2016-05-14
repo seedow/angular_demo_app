@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 	ngmin = require('gulp-ngmin'),
 	clean = require('gulp-clean'),
 	sequence = require('gulp-sequence'),
-	less = require('gulp-less')
+	less = require('gulp-less'),
+	watch = require('gulp-watch');
 
 	var STATIC_CSS = ['node_modules/bootstrap/dist/css/bootstrap.min.css'];
 	var STATIC_JS = ['node_modules/angular/angular.min.js']
@@ -30,14 +31,34 @@ gulp.task('compile_less', function () {
     .pipe(gulp.dest('./dist/css'));
 });
 
+gulp.task('less-watch',function(){
+	return gulp.src(['src/style/less/**/*.less'])
+		.pipe(watch('src/style/less/**/*.less'))
+		.pipe(less())
+		.pipe(gulp.dest('./dist/css'))
+})
 
-gulp.task('scripts', function() {
-	return gulp.src(['src/**/module.js', 'src/**/*.js'])
+gulp.task('compile_js', function() {
+	return gulp.src(['src/**/*.js'])
 		.pipe(concat('app.js'))
 		.pipe(ngmin())
 		.pipe(uglify())
-		.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('js-watch',function(){
+	return gulp.src(['src/**/*.js'])
+		.pipe(watch('src/**/*.js'))
+		.pipe(concat('app.js'))
+		.pipe(ngmin())
+		.pipe(gulp.dest('dist/js'));
+})
 
-gulp.task('default',sequence('clean',['move_static_css','move_static_js','compile_less']))
+
+
+
+gulp.task('dev',sequence('build',['less-watch','js-watch']))
+
+
+
+gulp.task('build',sequence('clean',['move_static_css','move_static_js','compile_less','compile_js']))

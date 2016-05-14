@@ -1,0 +1,32 @@
+{
+  "name": "angular_demo_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seedow/angular_demo_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seedow/angular_demo_app/issues"
+  },
+  "homepage": "https://github.com/seedow/angular_demo_app#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-less": "^3.1.0",
+    "gulp-sequence": "^0.4.5"
+  },
+  "devDependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-uglify": "^1.5.3"
+  }
+}

@@ -10,15 +10,25 @@
 		<script src="dist/js/app.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<div ng-controller="mainController" class='app'>
-			<div ng-repeat="movie in movies">
-  
-			<div class="thumbnail col-sm-6 col-md-4">
-				<img class="movie-poster"ng-src="{{movie.poster_path}}"/>
-				<span class='movie-title centered'>{{movie.title}}</span>
+		<!-- <div ng-include="'dist/templates/movieDetails.html'"></div> -->
+		<div ng-controller="movieController" class='app container'>
+			<div>
+				<form ng-submit="searchMovie()">
+					<input type="text" ng-model="searchedMovie">
+					<button type="submit">Search</button>
+				</form>
+			</div>
+
+			<div ng-repeat="movie in movies | orderBy:'-vote_count'" class="row col-xs-0 col-md-4">
+				<div class='thumbnail movie' ng-mouseover="displayVotes(this)">
+					<img class="movie-poster"ng-src="{{movie.poster_path}}"/>
+					<div class='movie-title label label-default'>{{movie.title}}</div>
+					<div class='votes'><b>Votes:</b> {{movie.vote_count | number}}</div>
+					<div class='description'><b>Description:</b> {{movie.overview}}</div>
+					<div class='description'><b>Released:</b> {{movie.release_date | date}}</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-</body>
+		
+	</body>
 </html>

@@ -18,9 +18,11 @@
   "homepage": "https://github.com/seedow/angular_demo_app#readme",
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
     "bootstrap": "^3.3.6",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-concat-css": "^2.2.0",
     "gulp-connect": "^4.0.0",
     "gulp-less": "^3.1.0",
     "gulp-ng-annotate": "^2.0.0",

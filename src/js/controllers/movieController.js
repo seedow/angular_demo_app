@@ -1,12 +1,21 @@
-var app = angular.module('demo_app', []);
 
-app.controller('movieController', function($scope, omdb) {
+var module = angular.module('demo_app');
 
+module.controller('movieController', function($scope, omdb) {
 
-	$scope.searchMovie = function() {
-		omdb.getMovie($scope.searchedMovie)
+	$scope.movies = [];
+
+	$scope.foundMoviesCount = function(){
+	 return	$scope.movies.length
+	}
+
+	$scope.searchMovie = function(movie) {
+		omdb.getMovie(movie)
 			.then(function(movies) {
 				$scope.movies = movies;
 			})
 	}
+
+	$scope.movie = "hot"
+	$scope.searchMovie($scope.movie);
 })

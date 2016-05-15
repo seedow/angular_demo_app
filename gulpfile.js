@@ -6,10 +6,11 @@ var gulp = require('gulp'),
 	sequence = require('gulp-sequence'),
 	less = require('gulp-less'),
 	watch = require('gulp-watch'),
-	connect = require('gulp-connect');
+	connect = require('gulp-connect'),
+	concatCss = require('gulp-concat-css');
 
 var STATIC_CSS = ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
-	STATIC_JS = ['node_modules/angular/angular.min.js'],
+	STATIC_JS = ['node_modules/angular/angular.min.js','node_modules/angular-route/angular-route.min.js'],
 	STATIC_HTML = ['src/templates/**/*.html']
 
 gulp.task('clean', function() {
@@ -38,15 +39,16 @@ gulp.task('move_static_html', function() {
 gulp.task('compile_less', function() {
 	return gulp.src('src/style/less/**/*.less')
 		.pipe(less())
-		.pipe(gulp.dest('./dist/css'))
+		 .pipe(concatCss("style.css"))
+		.pipe(gulp.dest('./dist/css/'))
 		.pipe(connect.reload());
 });
 
 gulp.task('compile_js', function() {
-	return gulp.src(['src/**/*.js'])
+	return gulp.src(['src/js/modules/**.js','src/js/services/**.js','src/js/controllers/**.js'])
 		.pipe(concat('app.js'))
 		.pipe(annotate())
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest('dist/js'))
 		.pipe(connect.reload());
 });

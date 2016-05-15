@@ -1,0 +1,32 @@
+<div class='app container-fluid'>
+	
+	<button class="btn btn-info" ng-click="redirectTo('home')">BACK</button>
+	<div class="form-group">
+		<form ng-submit="searchActor(actor)" class="form-inline">
+		
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon" id="sizing-addon1">Actor</span>
+				<input type="text" ng-model="actor" class="form-control">
+			</div>
+			
+			<button type="submit" class="btn btn-primary btn-lg">Search</button>
+		</form>
+	</div>
+</div>
+<div ng-repeat="actor in actors | orderBy:'-popularity'">
+<h1>
+	Name: {{actor.name}}
+<!-- Popularity: {{actor.popularity | number}} -->
+</h1>
+<div ng-repeat="movie in actor.known_for | orderBy:'-popularity'">
+	 Movie Title: {{movie.title}}
+</div>
+	<!-- <div class='thumbnail movie' ng-mouseover="displayVotes(this)">
+		<img class="movie-poster"ng-src="{{movie.poster_path}}"/>
+		<div class='movie-title label label-default'>{{movie.title}}</div>
+		<div class='votes'><b>Votes:</b> {{movie.vote_count | number}}</div>
+		<div class='description'><b>Description:</b> {{movie.overview}}</div>
+		<div class='description'><b>Released:</b> {{movie.release_date | date}}</div> -->
+	</div>
+</div>
+</div>

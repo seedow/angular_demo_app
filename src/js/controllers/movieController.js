@@ -1,7 +1,7 @@
 
 var module = angular.module('demo_app');
 
-module.controller('movieController', function($scope, omdb) {
+module.controller('movieController', function($scope, omdb,$location) {
 
 	$scope.movies = [];
 
@@ -14,6 +14,10 @@ module.controller('movieController', function($scope, omdb) {
 			.then(function(movies) {
 				$scope.movies = movies;
 			})
+	}
+
+	$scope.redirectTo = function(route){
+		$location.path('/'+route);
 	}
 
 	$scope.movie = "hot"

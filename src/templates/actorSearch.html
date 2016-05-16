@@ -1,6 +1,7 @@
 <div class='app container-fluid'>
 	
-	<button class="btn btn-info" ng-click="redirectTo('home')">BACK</button>
+	<span ng-include="'dist/templates/backButton.html'"></span>	
+	
 	<div class="form-group">
 		<form ng-submit="searchActor(actor)" class="form-inline">
 		
@@ -30,3 +31,4 @@
 	</div>
 </div>
 </div>
+

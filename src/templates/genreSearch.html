@@ -1,8 +1,6 @@
 <div class="container-fluid genre-container">
 	
-	<div class="row">
-		<button class="btn btn-lg btn-warning genre-back-button" ng-click="redirectTo('home')">BACK</button>
-	</div>
+	<span ng-include="'dist/templates/backButton.html'"></span>
 	
 	<div class="row">
 		<div class="col-md-3 genre-bar">
@@ -10,13 +8,9 @@
 				<div class="btn btn-primary genre-button" ng-click='getMoviesInGenre(genre.id)'>{{genre.name}}</div>
 			</div>
 		</div>
-		<div class="col-md-9">
-			<div class="panel panel-primary genre-content">
-				<div class="thumbnail col-md-3 genre-movie" ng-repeat="movie in movies">
-					<img ng-src="{{movie.poster_path}}"/>{{movie.title}}
-				</div>
-			</div>
-		</div>
+
+
+		<span ng-include="'dist/templates/movieDetails.html'"></span>
 		
 	</div>
 	

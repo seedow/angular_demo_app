@@ -19,6 +19,6 @@ app.config(function($routeProvider){
 			templateUrl:"dist/templates/genreSearch.html",
 			controller:'genreController'
 		})
-		// .otherwise({ redirectTo: '/home' })
+		.otherwise({ redirectTo: '/home' })
 
 })

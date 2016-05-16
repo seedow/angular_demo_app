@@ -1,3 +1,14 @@
-<div>
-
+<div class="col-md-{{movieContainerColumns}} movie-container">
+	<div class="panel panel-primary genre-content" style="{{movieContainerHeight}}">
+	<div class="no-content" ng-hide="movies.length>0">
+		NO MOVIES ...
+		{{error}}
+	</div>
+		<div class="thumbnail col-md-3 genre-movie" ng-repeat="movie in movies | orderBy:'-vote_count'">
+			<img ng-src="{{movie.poster_path}}"/>
+			<div class="movie-detail"><b>Title:</b> {{movie.title}}</div>
+			<div class="movie-detail"><b>Released:</b> {{movie.release_date | date}}</div>
+			<div class="movie-detail"><b>Votes:</b> {{movie.vote_count | number}}</div>
+		</div>
+	</div>
 </div>
